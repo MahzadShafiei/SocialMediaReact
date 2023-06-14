@@ -19,4 +19,8 @@ public class AcitivitiesController : BaseApiController
 
     [HttpGet("{id}")] //api/activities/klhjnikhni
     public async Task<ActionResult<Activity?>> GetActivity(Guid id) => await Mediator.Send(new Details.Query { Id = id });
+
+    [HttpPost]
+    public async Task<IActionResult> CreateActivity(Activity activity) => Ok(await Mediator.Send(new Create.Command { Activity = activity }));
+
 }
