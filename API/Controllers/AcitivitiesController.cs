@@ -9,15 +9,14 @@ namespace API.Controllers;
 
 public class AcitivitiesController : BaseApiController
 {
-    private readonly IMediator mediator;
 
-    public AcitivitiesController(IMediator mediator) => this.mediator = mediator;
+    public AcitivitiesController(IMediator mediator) { }
 
 
     [HttpGet] //api/activities
-    public async Task<ActionResult<List<Activity>>> GetActivities() => await mediator.Send(new List.Query());
-    
+    public async Task<ActionResult<List<Activity>>> GetActivities() => await Mediator.Send(new List.Query());
+
 
     [HttpGet("{id}")] //api/activities/klhjnikhni
-    public async Task<ActionResult<Activity?>> GetActivity(Guid id) => Ok();
+    public async Task<ActionResult<Activity?>> GetActivity(Guid id) => await Mediator.Send(new Details.Query { Id = id });
 }
