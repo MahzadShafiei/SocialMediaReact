@@ -23,12 +23,16 @@ public class AcitivitiesController : BaseApiController
     [HttpPost]
     public async Task<IActionResult> CreateActivity(Activity activity) => Ok(await Mediator.Send(new Create.Command { Activity = activity }));
 
-    [HttpPost("id")]
+    [HttpPut("id")]
     public async Task<IActionResult> EditAcitivity(Guid id, Activity activity)
     {
         activity.Id= id;
 
         return Ok(await Mediator.Send(new Edit.Command { Activity = activity }));
     }
+
+    [HttpDelete("id")]
+    public async Task<IActionResult> DeleteActivity(Guid id) => Ok(await Mediator.Send(new Delete.Command { Id = id }));
+    
 
 }
