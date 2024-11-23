@@ -9,10 +9,6 @@ namespace API.Controllers;
 
 public class AcitivitiesController : BaseApiController
 {
-
-    public AcitivitiesController(IMediator mediator) { }
-
-
     [HttpGet] //api/activities
     public async Task<ActionResult<List<Activity>>> GetActivities() => await Mediator.Send(new List.Query());
 
